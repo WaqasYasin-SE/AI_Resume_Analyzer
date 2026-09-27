@@ -1,0 +1,573 @@
+.resume-details-page {
+    min-height: 100vh;
+    background: #f8f7f5;
+}
+
+.resume-details-container {
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 48px 0 80px;
+}
+
+/* ─────────────────────────
+   Header
+───────────────────────── */
+
+.resume-details-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 36px;
+}
+
+.resume-details-header h1 {
+    margin: 8px 0 6px;
+    color: #0f172a;
+    font-family:
+        "Plus Jakarta Sans",
+        ui-sans-serif,
+        system-ui,
+        sans-serif;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    word-break: break-word;
+}
+
+.header-eyebrow,
+.card-eyebrow {
+    margin: 0;
+    color: #0d9488;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.header-description {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.back-button:hover {
+    color: #0f172a;
+}
+
+/* ─────────────────────────
+   Resume Status
+───────────────────────── */
+
+.resume-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 8px 13px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.resume-status__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.status--pending {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.status--processing {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status--completed {
+    background: #d1fae5;
+    color: #047857;
+}
+
+.status--failed {
+    background: #ffe4e6;
+    color: #dc2626;
+}
+
+.status--unknown {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+/* ─────────────────────────
+   Analysis Layout
+───────────────────────── */
+
+.analysis-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.analysis-card {
+    padding: 28px;
+    border: 1px solid #e7e5e4;
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+}
+
+.card-title {
+    margin: 5px 0 0;
+    color: #0f172a;
+    font-family:
+        "Plus Jakarta Sans",
+        ui-sans-serif,
+        system-ui,
+        sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+/* ─────────────────────────
+   Score Card
+───────────────────────── */
+
+.score-card {
+    overflow: hidden;
+}
+
+.score-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.score-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #ccfbf1;
+    color: #0f766e;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.score-card__score {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.score-card__score span {
+    color: #0d9488;
+    font-family:
+        "Plus Jakarta Sans",
+        ui-sans-serif,
+        system-ui,
+        sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.06em;
+}
+
+.score-card__score small {
+    color: #64748b;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.score-card__progress {
+    height: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #f3f2ef;
+}
+
+.score-card__progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(to right,
+            #0d9488,
+            #0f766e);
+    transition: width 0.5s ease;
+}
+
+.score-card__description {
+    margin: 14px 0 0;
+    color: #64748b;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+/* ─────────────────────────
+   Summary Card
+───────────────────────── */
+
+.summary-text {
+    margin: 14px 0 0;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* ─────────────────────────
+   List Cards
+   Strengths + Recommendations
+───────────────────────── */
+
+.list-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.list-card__icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 12px;
+}
+
+.list-card__icon--strengths {
+    background: #d1fae5;
+    color: #047857;
+}
+
+.list-card__icon--recommendations {
+    background: #ccfbf1;
+    color: #0d9488;
+}
+
+.list-card__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.list-card__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px;
+    border-radius: 16px;
+    background: #f8f7f5;
+}
+
+.list-card__item p {
+    margin: 0;
+    color: #334155;
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.list-card__item-marker {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.list-card__item-marker--strengths {
+    background: #d1fae5;
+    color: #047857;
+}
+
+.list-card__item-marker--recommendations {
+    background: #ccfbf1;
+    color: #0d9488;
+}
+
+.empty-text {
+    margin: 16px 0 0;
+    color: #64748b;
+    font-size: 0.88rem;
+}
+
+/* ─────────────────────────
+   Processing / Error Messages
+───────────────────────── */
+
+.status-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+    border: 1px solid #e7e5e4;
+    border-radius: 24px;
+    background: #ffffff;
+}
+
+.status-message__icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    color: #0d9488;
+}
+
+.status-message h2 {
+    margin: 0;
+    color: #0f172a;
+    font-family:
+        "Plus Jakarta Sans",
+        ui-sans-serif,
+        system-ui,
+        sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.status-message p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+/* Pending */
+
+.status-message--pending {
+    border-color: rgba(217, 119, 6, 0.2);
+    background: rgba(254, 243, 199, 0.4);
+}
+
+.status-message--pending .status-message__icon {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+/* Processing */
+
+.status-message--processing {
+    border-color: rgba(13, 148, 136, 0.2);
+    background: rgba(204, 251, 241, 0.3);
+}
+
+.status-message--processing .status-message__icon {
+    background: #ccfbf1;
+    color: #0d9488;
+}
+
+/* Failed */
+
+.status-message--failed {
+    border-color: rgba(220, 38, 38, 0.2);
+    background: rgba(255, 228, 230, 0.3);
+}
+
+.status-message--failed .status-message__icon {
+    background: #ffe4e6;
+    color: #dc2626;
+}
+
+.status-message__content {
+    flex: 1;
+}
+
+/* ─────────────────────────
+   Processing Animation
+───────────────────────── */
+
+.processing-bar {
+    height: 6px;
+    margin-top: 16px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(13, 148, 136, 0.1);
+}
+
+.processing-bar__fill {
+    width: 45%;
+    height: 100%;
+    border-radius: inherit;
+    background: #0d9488;
+    animation: processing 1.6s ease-in-out infinite;
+}
+
+@keyframes processing {
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(300%);
+    }
+}
+
+/* ─────────────────────────
+   Loading / Error State
+───────────────────────── */
+
+.resume-details-state {
+    display: flex;
+    min-height: 500px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.resume-details-state h1 {
+    margin: 0 0 8px;
+    color: #0f172a;
+    font-family:
+        "Plus Jakarta Sans",
+        ui-sans-serif,
+        system-ui,
+        sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.resume-details-state p {
+    margin: 0 0 20px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.state-icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 16px;
+    border-radius: 18px;
+}
+
+.state-icon--error {
+    background: #ffe4e6;
+    color: #dc2626;
+}
+
+/* Loading Spinner */
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 14px;
+    border: 3px solid #e7e5e4;
+    border-top-color: #0d9488;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ─────────────────────────
+   Buttons
+───────────────────────── */
+
+.primary-button {
+    padding: 11px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.primary-button:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+.primary-button--small {
+    margin-top: 16px;
+}
+
+/* ─────────────────────────
+   Responsive
+───────────────────────── */
+
+@media (max-width: 800px) {
+    .resume-details-container {
+        width: min(100% - 32px, 1100px);
+        padding-top: 32px;
+    }
+
+    .resume-details-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-card {
+        padding: 22px;
+    }
+
+    .score-card__score span {
+        font-size: 3.8rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .resume-details-container {
+        width: calc(100% - 24px);
+    }
+
+    .score-card__header,
+    .list-card__header {
+        flex-direction: column;
+    }
+
+    .status-message {
+        padding: 20px;
+    }
+}

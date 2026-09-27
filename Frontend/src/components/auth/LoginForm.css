@@ -1,0 +1,330 @@
+/* ================================================================
+   LoginForm.css  –  AI Resume Analyzer
+   Reference: enhancv.com  |  Clean Light Professional Auth Form
+   ================================================================ */
+
+/* ── Form animation ──────────────────────────────────────────── */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Inter', system-ui, sans-serif;
+    animation: formSlideUp 0.4s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes formSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Field wrapper ────────────────────────────────────────────── */
+.auth-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ── Label — matches Enhancv small uppercase field labels ────────*/
+.auth-form__field label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #6b7280;
+    transition: color 0.15s ease;
+}
+
+.auth-form__field:focus-within label {
+    color: #2DC08D;
+}
+
+/* ── Input wrapper ───────────────────────────────────────────── */
+.auth-form__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Left icon */
+.auth-form__input-icon {
+    position: absolute;
+    left: 13px;
+    color: #9ca3af;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.18s ease;
+}
+
+.auth-form__field:focus-within .auth-form__input-icon {
+    color: #2DC08D;
+}
+
+/* ── Input — clean, professional, Enhancv-style ──────────────── */
+.auth-form__field input {
+    width: 100%;
+    padding: 12px 42px 12px 40px;
+    border: 1.5px solid #e5e8ef;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #1a1d2e;
+    font-family: 'Inter', inherit;
+    font-size: 0.93rem;
+    font-weight: 400;
+    outline: none;
+    box-sizing: border-box;
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+.auth-form__field input::placeholder {
+    color: #c4c9d4;
+    font-weight: 400;
+}
+
+.auth-form__field input:hover {
+    border-color: #c8cdd8;
+}
+
+.auth-form__field input:focus {
+    border-color: #2DC08D;
+    box-shadow: 0 0 0 3px rgba(45, 192, 141, 0.14);
+    background: #fafffe;
+}
+
+/* ── Password visibility toggle ──────────────────────────────── */
+.auth-form__password-toggle {
+    position: absolute;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    border-radius: 6px;
+    line-height: 1;
+    transition: color 0.18s ease, background 0.18s ease;
+}
+
+.auth-form__password-toggle:hover {
+    color: #2DC08D;
+    background: rgba(45, 192, 141, 0.08);
+}
+
+/* ── Forgot password link ────────────────────────────────────── */
+.auth-form__forgot {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -6px;
+}
+
+.auth-form__forgot a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #5F3DC4;
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+
+.auth-form__forgot a:hover {
+    color: #2DC08D;
+    text-decoration: underline;
+}
+
+/* ── Error message ───────────────────────────────────────────── */
+.auth-form__error {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 1px solid #fecaca;
+    border-left: 3px solid #ef4444;
+    background: #fff5f5;
+    color: #dc2626;
+    font-size: 0.86rem;
+    font-weight: 500;
+    line-height: 1.45;
+    animation: shake 0.36s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.auth-form__error-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #ef4444;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateX(-2px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(3px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-3px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(3px);
+    }
+}
+
+/* ── Submit button — Enhancv's teal-green CTA ────────────────── */
+.auth-form__submit {
+    position: relative;
+    width: 100%;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 10px;
+
+    /* Enhancv brand green gradient */
+    background: linear-gradient(135deg, #2DC08D 0%, #22a378 100%);
+    color: #ffffff;
+    font-family: 'Inter', inherit;
+    font-size: 0.94rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    overflow: hidden;
+
+    box-shadow: 0 4px 14px rgba(45, 192, 141, 0.32);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
+}
+
+/* Shimmer sweep — subtle, professional */
+.auth-form__submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg,
+            transparent 35%,
+            rgba(255, 255, 255, 0.15) 50%,
+            transparent 65%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.auth-form__submit:hover:not(:disabled)::before {
+    transform: translateX(100%);
+}
+
+.auth-form__submit:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(45, 192, 141, 0.42);
+}
+
+.auth-form__submit:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(45, 192, 141, 0.28);
+}
+
+.auth-form__submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ── Button inner content ────────────────────────────────────── */
+.auth-form__btn-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* ── Loading spinner ─────────────────────────────────────────── */
+.auth-form__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.65s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── "or" Divider ────────────────────────────────────────────── */
+.auth-form__divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #c4c9d4;
+}
+
+.auth-form__divider::before,
+.auth-form__divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e9ecf2;
+}
+
+/* ── Footer link ─────────────────────────────────────────────── */
+.auth-form__footer {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.55;
+}
+
+.auth-form__footer a {
+    color: #2DC08D;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.18s ease;
+}
+
+.auth-form__footer a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 1.5px;
+    background: #2DC08D;
+    border-radius: 2px;
+    transition: width 0.22s ease;
+}
+
+.auth-form__footer a:hover {
+    color: #22a378;
+}
+
+.auth-form__footer a:hover::after {
+    width: 100%;
+}

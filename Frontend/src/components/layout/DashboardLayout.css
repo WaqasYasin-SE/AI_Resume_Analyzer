@@ -1,0 +1,27 @@
+.dashboard-layout {
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.dashboard-layout__content {
+    min-height: 100vh;
+    margin-left: 240px;
+}
+
+.dashboard-layout__main {
+    padding: 28px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .dashboard-layout__content {
+        margin-left: 0;
+    }
+
+    .dashboard-layout__main {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,221 @@
+/* ================================================================
+   Sidebar.css  –  AI Resume Analyzer
+   Reference: enhancv.com  |  Matches full design system
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rubik:wght@400;500;600;700&display=swap');
+
+/* ── Sidebar shell ────────────────────────────────────────────── */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 248px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 14px;
+    background: #ffffff;
+    border-right: 1px solid #e9ecf2;
+    box-shadow: 1px 0 20px rgba(95, 61, 196, 0.04);
+    font-family: 'Inter', system-ui, sans-serif;
+    z-index: 100;
+    animation: sidebarSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes sidebarSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ── Brand / Logo block ───────────────────────────────────────── */
+.sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 8px 10px 24px;
+    border-bottom: 1px solid #f1f3f8;
+    margin-bottom: 16px;
+    text-decoration: none;
+}
+
+/* Gradient logo mark */
+.sidebar__logo {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2DC08D 0%, #22a378 100%);
+    color: #ffffff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(45, 192, 141, 0.3);
+}
+
+.sidebar__brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.sidebar__brand h1 {
+    margin: 0;
+    font-family: 'Rubik', 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1d2e;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.sidebar__brand span {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* ── Nav section label ────────────────────────────────────────── */
+.sidebar__nav-label {
+    padding: 0 10px;
+    margin-bottom: 6px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c4c9d4;
+}
+
+/* ── Nav container ────────────────────────────────────────────── */
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+/* ── Nav link ─────────────────────────────────────────────────── */
+.sidebar__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #6b7280;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+    white-space: nowrap;
+}
+
+.sidebar__link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    transition: color 0.15s ease;
+}
+
+/* Active left-border accent */
+.sidebar__link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: #2DC08D;
+}
+
+.sidebar__link:hover {
+    background: #f4f6fb;
+    color: #1a1d2e;
+}
+
+.sidebar__link.active {
+    background: rgba(45, 192, 141, 0.08);
+    color: #1a8a64;
+    font-weight: 600;
+}
+
+.sidebar__link.active .sidebar__link-icon {
+    color: #2DC08D;
+}
+
+/* ── Divider between nav groups ───────────────────────────────── */
+.sidebar__divider {
+    height: 1px;
+    background: #f1f3f8;
+    margin: 10px 0;
+}
+
+/* ── Footer area ──────────────────────────────────────────────── */
+.sidebar__footer {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #f1f3f8;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ── Logout button ────────────────────────────────────────────── */
+.sidebar__logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #9ca3af;
+    font-family: 'Inter', inherit;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidebar__logout:hover {
+    background: rgba(239, 68, 68, 0.07);
+    color: #dc2626;
+}
+
+.sidebar__logout:hover .sidebar__logout-icon {
+    color: #dc2626;
+}
+
+.sidebar__logout-icon {
+    flex-shrink: 0;
+    color: #c4c9d4;
+    transition: color 0.15s ease;
+}
+
+/* ── Version tag ─────────────────────────────────────────────── */
+.sidebar__version {
+    padding: 4px 12px 2px;
+    font-size: 0.68rem;
+    color: #d1d5db;
+    letter-spacing: 0.03em;
+}

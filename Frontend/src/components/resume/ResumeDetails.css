@@ -1,0 +1,111 @@
+.resume-details-page {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.resume-details-page__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.resume-details-page__back {
+    margin-bottom: 18px;
+    padding: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.resume-details-page__back:hover {
+    color: var(--color-text);
+}
+
+.resume-details-page__eyebrow {
+    margin-bottom: 6px;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.resume-details-page__header h1 {
+    margin-bottom: 6px;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+}
+
+.resume-details-page__header p:last-child {
+    color: var(--color-text-muted);
+}
+
+.resume-details-page__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.resume-details-page__grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.resume-details-page__message {
+    margin-bottom: 20px;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+}
+
+.resume-details-page__message h2 {
+    margin-bottom: 6px;
+    font-size: 1rem;
+}
+
+.resume-details-page__message p {
+    color: var(--color-text-muted);
+}
+
+.resume-details-page__message--error {
+    border-color: rgb(220 38 38 / 0.25);
+    background: rgb(220 38 38 / 0.04);
+}
+
+.resume-details-page__state {
+    display: grid;
+    place-items: center;
+    min-height: 400px;
+    text-align: center;
+}
+
+.resume-details-page__state h1 {
+    margin-bottom: 8px;
+}
+
+.resume-details-page__state p {
+    margin-bottom: 16px;
+    color: var(--color-text-muted);
+}
+
+.resume-details-page__state button {
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+@media (max-width: 800px) {
+    .resume-details-page__header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .resume-details-page__grid {
+        grid-template-columns: 1fr;
+    }
+}

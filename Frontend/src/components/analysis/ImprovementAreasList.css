@@ -1,0 +1,50 @@
+.improvement-areas {
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.improvement-areas__header {
+    margin-bottom: 16px;
+}
+
+.improvement-areas__header h2 {
+    margin-bottom: 4px;
+    font-size: 1rem;
+}
+
+.improvement-areas__header p {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.improvement-areas__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.improvement-areas__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--color-text-muted);
+}
+
+.improvement-areas__icon {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgb(37 99 235 / 0.1);
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
