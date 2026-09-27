@@ -1,6 +1,7 @@
 
 "use client";
 
+import { isAxiosError } from "axios";
 import {
   createContext,
   useCallback,
@@ -147,10 +148,15 @@ export function AuthProvider({
           setUser(currentUser);
         }
       } catch (error: unknown) {
-        console.error(
-          "Failed to load current user:",
-          error
-        );
+        if (
+          !isAxiosError(error) ||
+          error.response?.status !== 401
+        ) {
+          console.error(
+            "Failed to load current user:",
+            error
+          );
+        }
 
         if (mounted) {
           setUser(null);

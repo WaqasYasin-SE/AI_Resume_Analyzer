@@ -1,10 +1,15 @@
 from sqlalchemy import create_engine
+from sqlalchemy.engine import make_url
 from sqlalchemy.orm import sessionmaker
 
 from app.core.config import settings
 
 
-engine = create_engine(settings.DATABASE_URL)
+database_url = make_url(settings.DATABASE_URL)
+if database_url.drivername in {"postgres", "postgresql"}:
+    database_url = database_url.set(drivername="postgresql+psycopg")
+
+engine = create_engine(database_url)
 
 SessionLocal = sessionmaker(
     autocommit=False,

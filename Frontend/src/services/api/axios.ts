@@ -91,10 +91,14 @@ api.interceptors.response.use(
             error.config as InternalAxiosRequestConfig & {
                 _retry?: boolean;
             };
+        const isSignInRequest =
+            originalRequest?.url?.includes("/auth/login") ||
+            originalRequest?.url?.includes("/auth/token");
 
         if (
             error.response?.status !== 401 ||
             originalRequest?._retry ||
+            isSignInRequest ||
             originalRequest?.url?.includes(
                 "/auth/refresh"
             )
