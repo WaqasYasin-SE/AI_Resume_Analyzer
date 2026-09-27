@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+"use client";
 
-import { useAuth } from "../../context/AuthContext";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { loginUser } from "../../services/api/authApi";
 import { useToast } from "../../context/ToastContext";
 
 import "./LoginForm.css";
 
 
-/* ── Inline SVG icons (no extra dependency needed) ─────────── */
 const IconEmail = () => (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -53,8 +55,7 @@ const IconAlertCircle = () => (
 
 
 function LoginForm() {
-    const navigate = useNavigate();
-    const { login } = useAuth();
+    const router = useRouter();
     const { showToast } = useToast();
 
     const [formData, setFormData] = useState({
@@ -67,25 +68,29 @@ function LoginForm() {
     const [showPwd, setShowPwd] = useState(false);
 
 
-    function handleChange(event) {
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     }
 
 
-    async function handleSubmit(event) {
+    async function handleSubmit(
+        event: React.FormEvent<HTMLFormElement>
+    ) {
         event.preventDefault();
         setError("");
         setSubmitting(true);
 
         try {
-            await login(formData);
-            showToast("Login successful.", "success");
-            navigate("/dashboard", { replace: true });
+            await loginUser(formData);
 
-        } catch (err) {
+            showToast("Login successful.", "success");
+            router.replace("/dashboard");
+
+        } catch (err: any) {
             const message =
                 err.response?.data?.detail || "Unable to login.";
+
             setError(message);
             showToast(message, "error");
 
@@ -98,7 +103,6 @@ function LoginForm() {
     return (
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
 
-            {/* ── Email ─────────────────────────────────────── */}
             <div className="auth-form__field">
                 <label htmlFor="email">Email address</label>
 
@@ -121,7 +125,6 @@ function LoginForm() {
             </div>
 
 
-            {/* ── Password ──────────────────────────────────── */}
             <div className="auth-form__field">
                 <label htmlFor="password">Password</label>
 
@@ -154,13 +157,11 @@ function LoginForm() {
             </div>
 
 
-            {/* ── Forgot password ───────────────────────────── */}
             <div className="auth-form__forgot">
-                <Link to="/forgot-password">Forgot password?</Link>
+                <Link href="/forgot-password">Forgot password?</Link>
             </div>
 
 
-            {/* ── Error message ─────────────────────────────── */}
             {error && (
                 <p className="auth-form__error" role="alert">
                     <span className="auth-form__error-icon">
@@ -171,7 +172,6 @@ function LoginForm() {
             )}
 
 
-            {/* ── Submit ────────────────────────────────────── */}
             <button
                 className="auth-form__submit"
                 type="submit"
@@ -186,14 +186,12 @@ function LoginForm() {
             </button>
 
 
-            {/* ── Divider ───────────────────────────────────── */}
             <div className="auth-form__divider">or</div>
 
 
-            {/* ── Footer ───────────────────────────────────── */}
             <p className="auth-form__footer">
                 Don't have an account?{" "}
-                <Link to="/register">Create account</Link>
+                <Link href="/signup">Create account</Link>
             </p>
         </form>
     );

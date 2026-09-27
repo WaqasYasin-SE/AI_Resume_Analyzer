@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+"use client";
 
-import { useAuth } from "../../context/AuthContext";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { registerUser } from "../../services/api/authApi";
 import { useToast } from "../../context/ToastContext";
 
 import "./RegisterForm.css";
 
 
-/* ── SVG Icons ──────────────────────────────────────────────── */
 const IconUser = () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" strokeWidth="2"
@@ -74,10 +76,11 @@ const IconAlert = () => (
 );
 
 
-/* ── Password strength helper ──────────────────────────────── */
-function getStrength(password) {
+function getStrength(password: string) {
     if (!password) return { score: 0, label: "", cls: "" };
+
     let score = 0;
+
     if (password.length >= 8) score++;
     if (/[A-Z]/.test(password)) score++;
     if (/[0-9]/.test(password)) score++;
@@ -90,13 +93,13 @@ function getStrength(password) {
         { label: "Good", cls: "good" },
         { label: "Strong", cls: "strong" },
     ];
+
     return { score, ...map[score] };
 }
 
 
 function RegisterForm() {
-    const navigate = useNavigate();
-    const { register } = useAuth();
+    const router = useRouter();
     const { showToast } = useToast();
 
     const [formData, setFormData] = useState({
@@ -114,37 +117,49 @@ function RegisterForm() {
     const strength = getStrength(formData.password);
 
 
-    function handleChange(event) {
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     }
 
 
-    async function handleSubmit(event) {
+    async function handleSubmit(
+        event: React.FormEvent<HTMLFormElement>
+    ) {
         event.preventDefault();
         setError("");
 
         if (formData.password !== formData.confirm_password) {
             const message = "Passwords do not match.";
+
             setError(message);
             showToast(message, "error");
+
             return;
         }
 
         setSubmitting(true);
 
         try {
-            await register({
+            await registerUser({
                 full_name: formData.full_name,
                 email: formData.email,
                 password: formData.password,
             });
 
             showToast("Account created successfully.", "success");
-            navigate("/login", { replace: true });
 
-        } catch (err) {
-            const message = err.response?.data?.detail || "Unable to create account.";
+            router.replace("/login");
+
+        } catch (err: any) {
+            const message =
+                err.response?.data?.detail ||
+                "Unable to create account.";
+
             setError(message);
             showToast(message, "error");
 
@@ -155,9 +170,12 @@ function RegisterForm() {
 
 
     return (
-        <form className="register-form" onSubmit={handleSubmit} noValidate>
+        <form
+            className="register-form"
+            onSubmit={handleSubmit}
+            noValidate
+        >
 
-            {/* ── Full name ─────────────────────────────────── */}
             <div className="register-form__field">
                 <label htmlFor="full_name">Full name</label>
 
@@ -180,7 +198,6 @@ function RegisterForm() {
             </div>
 
 
-            {/* ── Email ─────────────────────────────────────── */}
             <div className="register-form__field">
                 <label htmlFor="email">Email address</label>
 
@@ -203,7 +220,6 @@ function RegisterForm() {
             </div>
 
 
-            {/* ── Password ──────────────────────────────────── */}
             <div className="register-form__field">
                 <label htmlFor="password">Password</label>
 
@@ -227,14 +243,18 @@ function RegisterForm() {
                         type="button"
                         className="register-form__password-toggle"
                         onClick={() => setShowPwd((v) => !v)}
-                        aria-label={showPwd ? "Hide password" : "Show password"}
+                        aria-label={
+                            showPwd
+                                ? "Hide password"
+                                : "Show password"
+                        }
                         tabIndex={-1}
                     >
                         {showPwd ? <IconEyeOff /> : <IconEye />}
                     </button>
                 </div>
 
-                {/* ── Password strength ─────────────────────── */}
+
                 {formData.password && (
                     <div className="register-form__strength">
                         <div className="register-form__strength-bars">
@@ -242,13 +262,16 @@ function RegisterForm() {
                                 <div
                                     key={bar}
                                     className={`register-form__strength-bar${strength.score >= bar
-                                            ? ` active-${strength.cls}`
-                                            : ""
+                                        ? ` active-${strength.cls}`
+                                        : ""
                                         }`}
                                 />
                             ))}
                         </div>
-                        <span className={`register-form__strength-label ${strength.cls}`}>
+
+                        <span
+                            className={`register-form__strength-label ${strength.cls}`}
+                        >
                             {strength.label}
                         </span>
                     </div>
@@ -256,9 +279,10 @@ function RegisterForm() {
             </div>
 
 
-            {/* ── Confirm password ──────────────────────────── */}
             <div className="register-form__field">
-                <label htmlFor="confirm_password">Confirm password</label>
+                <label htmlFor="confirm_password">
+                    Confirm password
+                </label>
 
                 <div className="register-form__input-wrapper">
                     <span className="register-form__input-icon">
@@ -279,28 +303,40 @@ function RegisterForm() {
                     <button
                         type="button"
                         className="register-form__password-toggle"
-                        onClick={() => setShowConfirm((v) => !v)}
-                        aria-label={showConfirm ? "Hide password" : "Show password"}
+                        onClick={() =>
+                            setShowConfirm((v) => !v)
+                        }
+                        aria-label={
+                            showConfirm
+                                ? "Hide password"
+                                : "Show password"
+                        }
                         tabIndex={-1}
                     >
-                        {showConfirm ? <IconEyeOff /> : <IconEye />}
+                        {showConfirm ? (
+                            <IconEyeOff />
+                        ) : (
+                            <IconEye />
+                        )}
                     </button>
                 </div>
             </div>
 
 
-            {/* ── Error ─────────────────────────────────────── */}
             {error && (
-                <p className="register-form__error" role="alert">
+                <p
+                    className="register-form__error"
+                    role="alert"
+                >
                     <span className="register-form__error-icon">
                         <IconAlert />
                     </span>
+
                     {error}
                 </p>
             )}
 
 
-            {/* ── Submit ────────────────────────────────────── */}
             <button
                 className="register-form__submit"
                 type="submit"
@@ -308,21 +344,30 @@ function RegisterForm() {
             >
                 <span className="register-form__btn-inner">
                     {submitting && (
-                        <span className="register-form__spinner" aria-hidden="true" />
+                        <span
+                            className="register-form__spinner"
+                            aria-hidden="true"
+                        />
                     )}
-                    {submitting ? "Creating account…" : "Create account"}
+
+                    {submitting
+                        ? "Creating account…"
+                        : "Create account"}
                 </span>
             </button>
 
 
-            {/* ── Divider ───────────────────────────────────── */}
-            <div className="register-form__divider" aria-hidden="true">or</div>
+            <div
+                className="register-form__divider"
+                aria-hidden="true"
+            >
+                or
+            </div>
 
 
-            {/* ── Footer ───────────────────────────────────── */}
             <p className="register-form__footer">
                 Already have an account?{" "}
-                <Link to="/login">Sign in</Link>
+                <Link href="/login">Sign in</Link>
             </p>
 
         </form>
