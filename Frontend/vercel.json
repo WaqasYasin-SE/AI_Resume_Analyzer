@@ -4,10 +4,6 @@
         {
             "source": "/api/:path*",
             "destination": "https://ai-resume-analyzer-n2ez.vercel.app/:path*"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
         }
     ]
 }
