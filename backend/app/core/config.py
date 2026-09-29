@@ -16,13 +16,10 @@ class Settings(BaseSettings):
     AUTH_COOKIE_SECURE: bool = False
     AUTH_COOKIE_SAMESITE: str = "lax"
     CSRF_COOKIE_NAME: str = "csrf_token"
-    CSRF_HEADER_NAME: str = "X-CSRF-Token"  
+    CSRF_HEADER_NAME: str = "X-CSRF-Token"
 
     GEMINI_API_KEY: str | None = None
     GEMINI_MODEL: str = "gemini-3.1-flash-lite"
-
-    UPSTASH_REDIS_REST_URL="https://alive-sheep-318162.upstash.io"
-    UPSTASH_REDIS_REST_TOKEN="gQAAAAAABNrSAAIgcDE4MWY0ODk2NjZjZWU0YjJkOTliZDk0ZTQyMjY3M2Y2Zg"
 
     GOOGLE_CLIENT_ID: str
     GOOGLE_CLIENT_SECRET: str
