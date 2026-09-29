@@ -1,13 +1,7 @@
-import redis
-
-from app.core.config import settings
+from upstash_redis import Redis
 
 
-redis_client = redis.from_url(
-    settings.REDIS_URL,
-    encoding="utf-8",
-    decode_responses=True,
-)
+redis_client = Redis.from_env()
 
 
 def get_redis():
